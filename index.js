@@ -1,16 +1,12 @@
-const countingSort = (arr) => {
-  const min = Math.min(...arr);
-  const max = Math.max(...arr);
-  const count = Array(max - min + 1).fill(0);
-  for (let num of arr) {
-    count[num - min]++;
+function isAnagram(s, t) {
+  if (s.length !== t.length) return false;
+  const map = new Map();
+  for (const char of s) {
+    map.set(char, (map.get(char) || 0) + 1);
   }
-  let sortedIndex = 0;
-  for (let i = min; i <= max; i++) {
-    while (count[i - min] > 0) {
-      arr[sortedIndex++] = i;
-      count[i - min]--;
-    }
+  for (const char of t) {
+    if (!map.has(char) || map.get(char) === 0) return false;
+    map.set(char, map.get(char) - 1);
   }
-  return arr;
-};
+  return true;
+}
