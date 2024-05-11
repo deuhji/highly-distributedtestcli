@@ -1,12 +1,15 @@
-function isAnagram(s, t) {
-  if (s.length !== t.length) return false;
-  const map = new Map();
-  for (const char of s) {
-    map.set(char, (map.get(char) || 0) + 1);
-  }
-  for (const char of t) {
-    if (!map.has(char) || map.get(char) === 0) return false;
-    map.set(char, map.get(char) - 1);
+function isValidBST(root) {
+  const stack = [];
+  let inorder = -Infinity;
+  while (stack.length || root) {
+    while (root) {
+      stack.push(root);
+      root = root.left;
+    }
+    root = stack.pop();
+    if (root.val <= inorder) return false;
+    inorder = root.val;
+    root = root.right;
   }
   return true;
 }
