@@ -1,15 +1,10 @@
-function isValidBST(root) {
-  const stack = [];
-  let inorder = -Infinity;
-  while (stack.length || root) {
-    while (root) {
-      stack.push(root);
-      root = root.left;
-    }
-    root = stack.pop();
-    if (root.val <= inorder) return false;
-    inorder = root.val;
-    root = root.right;
-  }
-  return true;
-}
+const aliceBalanceAfter = await aptos.getAccountCoinsData({
+  accountAddress: aliceAddress,
+  minimumLedgerVersion: BigInt(response.version),
+});
+const bobBalanceAfter = await aptos.getAccountCoinsData({
+  accountAddress: bobAddress,
+});
+const sponsorBalanceAfter = await aptos.getAccountCoinsData({
+  accountAddress: sponsorAddress,
+});
